@@ -20,7 +20,7 @@ function makefunctor(m::Module, T, fs = fieldnames(T))
   escfs = [:($f=x.$f) for f in fs]
 
   @eval m begin
-    $Functors.functor(::Type{<:$T}, x) = ($(escfs...),), y -> $T($(escargs...))
+    $Functors.functor(::Type{<:$T}, x) = (;$(escfs...)), y -> $T($(escargs...))
   end
 end
 
